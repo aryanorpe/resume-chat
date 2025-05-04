@@ -1,0 +1,17 @@
+[theme]
+
+# The preset Streamlit theme that your custom theme inherits from.
+# This can be one of the following: "light" or "dark".
+base = 'light'
+
+# Primary accent color.
+primaryColor = 'white'
+
+# Background color of the app.
+backgroundColor = '#2E223C'
+
+# Background color used for most interactive widgets.
+secondaryBackgroundColor = 'white'
+
+# Color used for almost all text.
+textColor = 'white'
