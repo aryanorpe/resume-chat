@@ -1,3 +1,15 @@
+.stAppHeader {
+    display: none;
+}
+
+.stVerticalBlock {
+}
+
+.stHeading {
+    display: flex;
+    justify-content: center;
+}
+
 .stExpander {
     background-color: green;
 }
