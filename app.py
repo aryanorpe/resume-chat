@@ -2,7 +2,10 @@ import os
 import streamlit as st
 from groq import Groq
 
+# Setting page config
 # st.set_page_config(layout="wide")
+st.set_page_config(page_title='Resume Chat',
+                   page_icon='📑',)
 
 client = Groq(
     api_key=os.environ.get("GROQ_API_KEY"),
