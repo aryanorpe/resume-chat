@@ -102,6 +102,20 @@ def load_document(uploaded_file):
 
 
 # Save uploaded file to a properly closed temp file
+if uploaded_file:
+
+    # Load the document
+    docs = load_document(uploaded_file)
+
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=300, chunk_overlap=0, separators=["\n\n", "\n", ".", " ", ""]
+    )
+    chunks = splitter.split_documents(docs)
+
+    vectorstore.add_documents(chunks)
+    st.success("✅ Resume embedded and stored.")
+
+
 if "groq_model" not in st.session_state:
     st.session_state["groq_model"] = "meta-llama/llama-4-maverick-17b-128e-instruct"
 
