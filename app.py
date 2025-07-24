@@ -116,8 +116,16 @@ if uploaded_file:
     st.success("✅ Resume embedded and stored.")
 
 
+# Enables streaming responses
+def stream_response(stream):
+    for chunk in stream:
+        content = chunk.choices[0].delta.content
+        if content:
+            yield content
+
+
 if "groq_model" not in st.session_state:
-    st.session_state["groq_model"] = "meta-llama/llama-4-maverick-17b-128e-instruct"
+    st.session_state["groq_model"] = "llama-3.3-70b-versatile"
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -126,11 +134,12 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("Type here..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    # Retrieve context from vector DB
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
             model=st.session_state["groq_model"],
