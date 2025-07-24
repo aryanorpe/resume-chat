@@ -33,16 +33,49 @@ def stream_response(stream):
             yield content
 
 
+# Setting page config
+# st.set_page_config(layout="wide")
+st.set_page_config(
+    page_title="Resume Chat",
+    page_icon="📑",
+)
+
 # Importing stylesheet
-st.markdown('<style>' + open('./styles.css').read() + '</style>', unsafe_allow_html=True)
+st.markdown(
+    "<style>" + open("./styles.css").read() + "</style>", unsafe_allow_html=True
+)
 
-st.title('Resume Chat')
-st.header('Project by Aryan Orpe')
+st.title("📑💬 Resume Chat")
 
-with st.expander(label='What is this?', icon='🤔'):
-    st.write('Resume Chat is a GenAI powered assistant for HR Recruiters to quickly assess candidate resumes / CVs.')
-    
-st.file_uploader('Upload Resume')
+# Centered GitHub button-style link
+st.markdown(
+    """
+    <div style="text-align: center; margin-top: 10px;">
+        <a href="https://github.com/aryanorpe/resume-chat" target="_blank" style="
+            background-color: #24292e;
+            color: #ffffff;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 2px solid #ffffff;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            font-family: sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        ">⭐ View on GitHub</a>
+    </div>
+    <br></br>
+    """,
+    unsafe_allow_html=True,
+)
+
+with st.expander(label="What is this?", icon="🤔"):
+    st.write(
+        "Resume Chat is a GenAI powered assistant for HR Recruiters to quickly assess candidate resumes / CVs."
+    )
+
+uploaded_file = st.file_uploader("Upload Resume")
+
 
 if "groq_model" not in st.session_state:
     st.session_state["groq_model"] = "meta-llama/llama-4-maverick-17b-128e-instruct"
