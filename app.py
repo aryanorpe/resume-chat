@@ -15,7 +15,6 @@ load_dotenv()
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 groq_api_key = os.getenv("GROQ_API_KEY")
-# print("groq key", groq_api_key)
 
 client = Groq(
     api_key=groq_api_key,
