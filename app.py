@@ -77,6 +77,31 @@ with st.expander(label="What is this?", icon="🤔"):
 uploaded_file = st.file_uploader("Upload Resume")
 
 
+def load_document(uploaded_file):
+    file_name = uploaded_file.name
+    file_ext = file_name.split(".")[-1].lower()
+
+    # Save to a temp path
+    temp_dir = tempfile.gettempdir()
+    temp_path = os.path.join(temp_dir, file_name)
+    with open(temp_path, "wb") as f:
+        f.write(uploaded_file.read())
+
+    # Choose loader based on file extension
+    if file_ext == "txt":
+        loader = TextLoader(temp_path, encoding="utf-8")
+    elif file_ext == "docx":
+        loader = Docx2txtLoader(temp_path)
+    elif file_ext == "pdf":
+        loader = PyMuPDFLoader(temp_path)  # You can swap with PDFMinerLoader if needed
+    else:
+        st.error("Unsupported file type: " + file_ext)
+        return []
+
+    return loader.load()
+
+
+# Save uploaded file to a properly closed temp file
 if "groq_model" not in st.session_state:
     st.session_state["groq_model"] = "meta-llama/llama-4-maverick-17b-128e-instruct"
 
