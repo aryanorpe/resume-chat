@@ -142,16 +142,29 @@ if prompt := st.chat_input("Type here..."):
     # Retrieve context from vector DB
     docs = vectorstore.max_marginal_relevance_search(prompt, k=5, fetch_k=10)
     context = "\n\n".join(doc.page_content for doc in docs)
+    system_prompt = f"""
+    You are a professional AI assistant designed to help HR professionals evaluate job candidates based on their resumes.
+
+    Use only the information provided in the resume context below to answer questions. Be concise, detailed, accurate, and avoid repeating details. Do not make assumptions or fabricate information.
+
+    If the answer cannot be found in the resume, respond honestly.
+
+    If the question asked by the user is unrelated to the resume or HR assessment, respectfully mention that you cannot answer this question.
+    
+    Resume Context:
+    {context}
+    """
+
+    # Prepare messages
+    chat_messages = [
+        {"role": "system", "content": system_prompt}
+    ] + st.session_state.messages  # Includes all previous messages
+
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
             model=st.session_state["groq_model"],
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
+            messages=chat_messages,
             stream=True,
         )
         response = st.write_stream(stream_response(stream))
     st.session_state.messages.append({"role": "assistant", "content": response})
-
-# st.chat_input('hi')
