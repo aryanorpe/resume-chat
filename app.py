@@ -140,6 +140,8 @@ if prompt := st.chat_input("Type here..."):
         st.markdown(prompt)
 
     # Retrieve context from vector DB
+    docs = vectorstore.max_marginal_relevance_search(prompt, k=5, fetch_k=10)
+    context = "\n\n".join(doc.page_content for doc in docs)
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
             model=st.session_state["groq_model"],
