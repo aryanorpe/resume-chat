@@ -1,5 +1,6 @@
 import os
 import tempfile
+
 import streamlit as st
 from dotenv import load_dotenv
 from groq import Groq
@@ -9,14 +10,21 @@ from langchain_community.document_loaders import PyMuPDFLoader  # or PDFMinerLoa
 from langchain_community.document_loaders import Docx2txtLoader, TextLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 
-# Setting page config
-# st.set_page_config(layout="wide")
-st.set_page_config(page_title='Resume Chat',
-                   page_icon='📑',)
+load_dotenv()
+
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+groq_api_key = os.getenv("GROQ_API_KEY")
+# print("groq key", groq_api_key)
 
 client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY"),
+    api_key=groq_api_key,
 )
+
+embeddings = HuggingFaceEmbeddings(model_kwargs={"device": "cpu"})
+CHROMA_DIR = "chroma_store"
+vectorstore = Chroma(embedding_function=embeddings)
+
 
 def stream_response(stream):
     for chunk in stream:
