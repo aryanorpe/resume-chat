@@ -1,16 +1,28 @@
 .stAppHeader {
-    display: none;
+  display: none;
 }
 
 .stVerticalBlock {
 }
 
 .stHeading {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .stExpander {
-    background-color: green;
+  background-color: green;
 }
 
+textarea[data-testid="stChatInputTextArea"] {
+  color: black;
+  caret-color: black;
+}
+
+section[data-testid="stFileUploaderDropzone"] {
+  background-color: grey;
+}
+
+button[data-testid="stBaseButton-secondary"] {
+  color: white;
+}
