@@ -40,7 +40,10 @@ embeddings = HuggingFaceEmbeddings(
 )
 
 CHROMA_DIR = "chroma_store"
-vectorstore = Chroma(embedding_function=embeddings)
+vectorstore = Chroma(
+    embedding_function=embeddings,
+    persist_directory=None
+    )
 
 
 def stream_response(stream):
