@@ -27,3 +27,6 @@ level = "info"
 
 [browser]
 gatherUsageStats = false
+
+[server]
+enableXsrfProtection = false
