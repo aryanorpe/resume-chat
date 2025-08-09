@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from groq import Groq
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
-from langchain_community.document_loaders import PyMuPDFLoader  # or PDFMinerLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.document_loaders import Docx2txtLoader, TextLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 
