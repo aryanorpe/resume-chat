@@ -13,7 +13,6 @@ from langchain_chroma import Chroma
 from langchain_community.document_loaders import PyMuPDFLoader  # or PDFMinerLoader
 from langchain_community.document_loaders import Docx2txtLoader, TextLoader
 from langchain_huggingface import HuggingFaceEmbeddings
-from sentence_transformers import SentenceTransformer
 
 load_dotenv()
 
@@ -25,8 +24,7 @@ client = Groq(
     api_key=groq_api_key,
 )
 
-model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device="cpu")
-embeddings = HuggingFaceEmbeddings(client=model)
+embeddings = HuggingFaceEmbeddings(model_kwargs={"device": "cpu"})
 
 CHROMA_DIR = "chroma_store"
 vectorstore = Chroma(embedding_function=embeddings)
