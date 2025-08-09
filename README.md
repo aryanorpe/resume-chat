@@ -1,3 +1,16 @@
+---
+title: Resume Chat
+emoji: 📄
+colorFrom: purple
+colorTo: green
+sdk: docker
+app_port: 8501
+tags:
+- streamlit
+pinned: false
+short_description: GenAI assistant for HR professionals to do resume analysis.
+---
+
 # 📄 Resume Chat
 
 **Resume Chat** is a GenAI-powered assistant for HR recruiters to quickly assess candidate resumes/CVs.  
