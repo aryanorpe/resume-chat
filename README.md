@@ -87,7 +87,7 @@ Demo Video
 
 ## ⚙️ Configuration
 
-- Default Model: meta-llama/llama-4-maverick-17b-128e-instruct
+- Default Model: `llama-3.3-70b-versatile`
 
 - Streaming: Enabled by default
 
