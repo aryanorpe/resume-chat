@@ -15,3 +15,15 @@ secondaryBackgroundColor = 'white'
 
 # Color used for almost all text.
 textColor = 'white'
+
+[global]
+dataSavePath = "/tmp"
+
+[client]
+showErrorDetails = true
+
+[logger]
+level = "info"
+
+[browser]
+gatherUsageStats = false
