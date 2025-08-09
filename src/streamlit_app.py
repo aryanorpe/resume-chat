@@ -59,7 +59,7 @@ st.set_page_config(
 
 # Importing stylesheet
 st.markdown(
-    "<style>" + open("./styles.css").read() + "</style>", unsafe_allow_html=True
+    "<style>" + open("./src/styles.css").read() + "</style>", unsafe_allow_html=True
 )
 
 st.title("📑💬 Resume Chat")
