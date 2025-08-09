@@ -16,6 +16,9 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 load_dotenv()
 
+os.environ["TRANSFORMERS_CACHE"] = "/tmp/huggingface_cache"
+os.makedirs("/tmp/huggingface_cache", exist_ok=True)
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 groq_api_key = os.getenv("GROQ_API_KEY")
