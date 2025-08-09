@@ -16,8 +16,15 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 load_dotenv()
 
-os.environ["TRANSFORMERS_CACHE"] = "/tmp/huggingface_cache"
-os.makedirs("/tmp/huggingface_cache", exist_ok=True)
+os.environ["TRANSFORMERS_CACHE"] = "/tmp"
+os.environ["HF_HOME"] = "/tmp"
+os.environ["XDG_CACHE_HOME"] = "/tmp"
+os.environ["HF_DATASETS_CACHE"] = "/tmp"
+os.environ["HF_METRICS_CACHE"] = "/tmp"
+os.environ["TORCH_HOME"] = "/tmp"
+
+os.environ["STREAMLIT_HOME"] = "/tmp/.streamlit"
+os.makedirs("/tmp/.streamlit", exist_ok=True)
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -27,7 +34,10 @@ client = Groq(
     api_key=groq_api_key,
 )
 
-embeddings = HuggingFaceEmbeddings(model_kwargs={"device": "cpu"})
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2",
+    model_kwargs={"device": "cpu"}
+)
 
 CHROMA_DIR = "chroma_store"
 vectorstore = Chroma(embedding_function=embeddings)
