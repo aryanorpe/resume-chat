@@ -24,7 +24,12 @@ client = Groq(
     api_key=groq_api_key,
 )
 
-embeddings = HuggingFaceEmbeddings(model_kwargs={"device": "cpu"})
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2",  # example
+    model_kwargs={"device": "cpu"},
+    encode_kwargs={"normalize_embeddings": False}
+)
+
 CHROMA_DIR = "chroma_store"
 vectorstore = Chroma(embedding_function=embeddings)
 
