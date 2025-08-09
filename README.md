@@ -91,7 +91,7 @@ Demo Video
 
 - Streaming: Enabled by default
 
-- Session Memory: Maintained using st.session_state
+- Session Memory: Maintained using `st.session_state`
 
 ---
 
@@ -103,5 +103,6 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-Aryan Orpe
+**Aryan Orpe**
+
 GitHub: [@aryanorpe](https://github.com/aryanorpe)
