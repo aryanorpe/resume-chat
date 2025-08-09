@@ -26,7 +26,7 @@ client = Groq(
 
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",  # example
-    model_kwargs={"device": "cpu"},
+    model_kwargs={"device": "cpu", "device_map": None},
     encode_kwargs={"normalize_embeddings": False}
 )
 
